@@ -1,0 +1,34 @@
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { AuthService } from '../../servies/auth/auth.service';
+
+@Component({
+  selector: 'app-register',
+  standalone: true,
+  imports: [CommonModule, FormsModule, RouterModule],
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
+})
+export class RegisterComponent {
+  email = '';
+  password = '';
+  error = '';
+
+  constructor(private auth: AuthService, private router: Router) {
+    if (this.auth.isAuthenticated()) {
+    this.router.navigate(['/home']);
+  }
+  }
+
+  register() {
+    try {
+      this.auth.register({ email: this.email, password: this.password });
+      this.router.navigate(['/home']);
+    } catch (e: any) {
+      this.error = e.message;
+    }
+  }
+}
