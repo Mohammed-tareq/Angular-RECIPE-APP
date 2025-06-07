@@ -1,0 +1,16 @@
+<div class="container  mx-auto px-4 py-8">
+  <h2 class="text-4xl  mb-8 text-gray-900">Recipes For You</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    @for (item of items; track $index) {
+        <div class="w-full">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl flex flex-col h-80">
+          <img [src]="item.image" alt="food img" class="w-full h-60 object-cover">
+
+          <div class="p-6 flex-1 flex flex-col justify-center">
+            <h3 class="text-lg  mb-3 text-gray-800">{{ item.title }}</h3>
+          </div>
+        </div>
+      </div>
+      }
+  </div>
+</div>

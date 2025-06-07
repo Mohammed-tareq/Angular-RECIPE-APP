@@ -1,0 +1,24 @@
+<div class="bg-gradient-to-r from-yellow-100 via-orange-200 to-green-100 text-gray-800 min-h-screen flex flex-col overflow-y-auto font-sans">
+
+    <div class="container-fluid mx-auto mt-10 p-4">
+      <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Recipe Search</h2>
+      <div class="flex items-center space-x-3">
+        <input
+          type="text"
+          class="flex-3 p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-gray-700 placeholder-gray-400 text-lg"
+          placeholder="Search for recipes..."
+          [(ngModel)]="query"
+          name="query"
+          (keyup.enter)="searchRecipes()"
+        />
+        <button
+          class="px-6 py-3 bg-orange-600 text-white font-semibold rounded-lg shadow-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-800 focus:ring-opacity-75 transition duration-300 ease-in-out text-lg"
+          type="button"
+          (click)="searchRecipes()"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+    <app-item-for-search> </app-item-for-search>
+</div>

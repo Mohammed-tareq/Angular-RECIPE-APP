@@ -1,0 +1,23 @@
+<div class="bg-gradient-to-r from-yellow-100 via-orange-200 to-green-100 text-gray-800 min-h-screen flex flex-col overflow-y-auto font-sans">
+
+    <main class="flex flex-col lg:flex-row items-center justify-between px-6 lg:px-24 py-12 lg:py-24 flex-grow">
+        <div class="text-center lg:text-left lg:w-1/2">
+            <h1 class="text-4xl lg:text-6xl font-extrabold mb-6 text-orange-900 leading-tight">
+                Create Delicious Recipes in Seconds!
+            </h1>
+            <p class="text-lg lg:text-xl mb-8 text-green-800">
+                Enter your ingredients, choose your preferences, and let our AI create the perfect recipe for you.
+            </p>
+            <button class="bg-orange-600 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-orange-700 transition duration-300 ease-in-out shadow-lg"
+            (click)="navigateToRecipes()">
+                Get Started
+            </button>
+        </div>
+        <div class="flex justify-center lg:justify-end lg:w-1/2 mt-12 lg:mt-0">
+            <div class="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden flex items-center justify-center bg-transparent">
+              <img src="assets/image/chef.png" alt="A cheerful chef in a white uniform smiles while garnishing a colorful dish, surrounded by fresh vegetables and kitchen utensils on a bright countertop, creating a welcoming and lively kitchen atmosphere">
+            </div>
+        </div>
+    </main>
+
+</div>
