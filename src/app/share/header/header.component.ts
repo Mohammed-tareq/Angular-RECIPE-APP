@@ -21,6 +21,6 @@ export class HeaderComponent {
   }
 
   get userName(): string {
-    return this.auth.getCurrentUser()?.email || '';
+    return this.auth.getCurrentUser()?.name || '';
   }
 }

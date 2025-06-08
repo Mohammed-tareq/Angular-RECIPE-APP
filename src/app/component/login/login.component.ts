@@ -24,6 +24,10 @@ export class LoginComponent {
   }
 
   login() {
+    if (!this.email || !this.password) {
+    this.error = 'Please fill in all required fields.';
+    return;
+  }
     try {
       this.auth.login({ email: this.email, password: this.password });
       this.router.navigate(['/home']);
