@@ -2,18 +2,35 @@
   <div class="bg-white rounded-xl shadow-lg p-10 w-full max-w-md">
     <h2 class="text-3xl font-extrabold text-orange-900 text-center mb-6">Register</h2>
 
-    <form (ngSubmit)="register()" class="space-y-4">
-      <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required
-             class="w-full px-4 py-3 rounded-lg border border-orange-300 focus:outline-none focus:ring-2 focus:ring-orange-500" />
+    <form #registerForm="ngForm" (ngSubmit)="register()" class="space-y-4">
 
-      <input type="password" placeholder="Password" [(ngModel)]="password" name="password" required
-             class="w-full px-4 py-3 rounded-lg border border-orange-300 focus:outline-none focus:ring-2 focus:ring-orange-500" />
+  <input type="text" placeholder="Name" [(ngModel)]="name" name="name" required minlength="4"
+         #nameRef="ngModel"
+         class="w-full px-4 py-3 rounded-lg border border-orange-300 focus:outline-none focus:ring-2 focus:ring-orange-500" />
+  <p *ngIf="nameRef.invalid && nameRef.touched" class="text-red-600 text-sm">
+    Name is required (min 4 characters).
+  </p>
 
-      <button type="submit"
-              class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-lg transition duration-300 ease-in-out shadow">
-        Register
-      </button>
-    </form>
+  <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required email
+         #emailRef="ngModel"
+         class="w-full px-4 py-3 rounded-lg border border-orange-300 focus:outline-none focus:ring-2 focus:ring-orange-500" />
+  <p *ngIf="emailRef.invalid && emailRef.touched" class="text-red-600 text-sm">
+    Enter a valid email.
+  </p>
+
+  <!-- Password -->
+  <input type="password" placeholder="Password" [(ngModel)]="password" name="password" required minlength="6"
+         #passwordRef="ngModel"
+         class="w-full px-4 py-3 rounded-lg border border-orange-300 focus:outline-none focus:ring-2 focus:ring-orange-500" />
+  <p *ngIf="passwordRef.invalid && passwordRef.touched" class="text-red-600 text-sm">
+    Password must be at least 6 characters long.
+  </p>
+
+  <button type="submit" [disabled]="registerForm.invalid"
+          class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-lg transition duration-300 ease-in-out shadow">
+    Register
+  </button>
+</form>
 
     <p *ngIf="error" class="text-red-600 text-center mt-4">{{ error }}</p>
 

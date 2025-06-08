@@ -29,14 +29,14 @@ import { Router } from '@angular/router';
 export class AuthService {
   constructor(private router: Router) {}
 
-  register(user: { email: string; password: string }) {
-    const users = this.getUsers();
-    const exists = users.find(u => u.email === user.email);
-    if (exists) throw new Error('User already exists');
-    users.push(user);
-    localStorage.setItem('users', JSON.stringify(users));
-    this.saveToken(user.email);
-  }
+  register(user: { name: string; email: string; password: string }) {
+  const users = this.getUsers();
+  const exists = users.find(u => u.email === user.email);
+  if (exists) throw new Error('User already exists');
+  users.push(user);
+  localStorage.setItem('users', JSON.stringify(users));
+  this.saveToken(user.email);
+}
 
   login(credentials: { email: string; password: string }) {
     const users = this.getUsers();
@@ -64,13 +64,13 @@ export class AuthService {
     localStorage.setItem('token', token);
   }
 
-  private getUsers(): { email: string; password: string }[] {
-    return JSON.parse(localStorage.getItem('users') || '[]');
-  }
+  private getUsers(): { name: string; email: string; password: string }[] {
+  return JSON.parse(localStorage.getItem('users') || '[]');
+}
 
-  getCurrentUser(): { email: string; password: string } | null {
+  getCurrentUser(): { name: string; email: string; password: string } | null {
   const email = localStorage.getItem('token');
   const users = this.getUsers();
   return users.find(u => u.email === email) || null;
-  }
+}
 }

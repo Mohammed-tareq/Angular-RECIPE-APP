@@ -13,6 +13,7 @@ import { AuthService } from '../../servies/auth/auth.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
+  name = '';
   email = '';
   password = '';
   error = '';
@@ -24,11 +25,15 @@ export class RegisterComponent {
   }
 
   register() {
-    try {
-      this.auth.register({ email: this.email, password: this.password });
-      this.router.navigate(['/home']);
-    } catch (e: any) {
-      this.error = e.message;
-    }
+    if (!this.name || !this.email || !this.password) {
+    this.error = 'Please fill in all required fields.';
+    return;
   }
+  try {
+    this.auth.register({ name: this.name, email: this.email, password: this.password });
+    this.router.navigate(['/home']);
+  } catch (e: any) {
+    this.error = e.message;
+  }
+}
 }
