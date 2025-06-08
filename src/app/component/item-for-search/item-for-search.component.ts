@@ -11,13 +11,14 @@ import { CommonModule } from '@angular/common';
 export class ItemForSearchComponent {
 
   items: any[] = [];
+  itemShow: any[] = [];
 
   constructor(private spoonSer: SpoonacularService) { }
-  itemShow: any[] = [];
 
   ngOnInit(): void {
   this.spoonSer.getRecipeStatic("pizza").subscribe((data: any) => {
     this.items = data.results;
+    this.itemShow = this.items.slice(0, 3); // Show only the first 10 items
   });
 }
 
