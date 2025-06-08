@@ -4,13 +4,15 @@ import { RegisterComponent } from './component/register/register.component';
 import { MainComponent } from './pages/home/main/main.component';
 import { Routes } from '@angular/router';
 import { AuthGuard } from './Gurad/auth.guard'
+import { ContactComponent } from './component/contact/contact.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'home', component: MainComponent },
-    { path: 'recipe-search', component: RecipeSearchComponent },
-    { path: 'Recipes', loadComponent: () => import('./component/recipe-list/recipe-list.component').then(m => m.RecipeListComponent) },
+    { path: 'home', component: MainComponent, canActivate: [AuthGuard] },
+    { path: 'recipe-search', component: RecipeSearchComponent, canActivate: [AuthGuard] },
+    { path: 'Recipes', loadComponent: () => import('./component/recipe-list/recipe-list.component').then(m => m.RecipeListComponent), canActivate: [AuthGuard] },
+    { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
     { path: '**', redirectTo: 'login' },
 ];
