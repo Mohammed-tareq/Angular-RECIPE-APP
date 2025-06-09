@@ -9,7 +9,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 
 export class SpoonacularService {
-  private apiKey: string = "SY4F2IC2t80fGCmOTt01v7zP6rn0ARKp";
+  private apiKey: string = "02uHoJmUXweicGZcxX1BicCR26mIUEGn";
   private recipesSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   recipes: Observable<any[]> = this.recipesSubject.asObservable();
 
