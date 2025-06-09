@@ -9,9 +9,9 @@ import { SpoonacularService } from '../../servies/spoonacular/spoonacular.servic
 })
 export class RecipeListComponent implements OnInit {
 
-  recipes:any[] = [];
+  recipes: any[] = [];
 
-  constructor(private spoonSer:SpoonacularService) { }
+  constructor(private spoonSer: SpoonacularService) { }
 
   ngOnInit(): void {
     this.showRecipes();
@@ -19,14 +19,14 @@ export class RecipeListComponent implements OnInit {
   }
 
   showRecipes() {
-  this.spoonSer.recipes.subscribe({
-    next: (data:any) => {
-      this.recipes = data;
-    },
-    error: (err:any) => {
-      console.error('Error fetching recipes:', err);
-    }
-  });
+    this.spoonSer.recipes.subscribe({
+      next: (data: any) => {
+        this.recipes = data;
+      },
+      error: (err: any) => {
+        console.error('Error fetching recipes:', err);
+      }
+    });
 
   }
 
