@@ -14,14 +14,20 @@ export class RecipeListComponent implements OnInit {
   constructor(private spoonSer:SpoonacularService) { }
 
   ngOnInit(): void {
-    this.spoonSer.recipes.subscribe((data) => {
-      this.recipes = data;
-    })
-    console.log(this.recipes);
+    this.showRecipes();
 
   }
 
+  showRecipes() {
+  this.spoonSer.recipes.subscribe({
+    next: (data:any) => {
+      this.recipes = data;
+    },
+    error: (err:any) => {
+      console.error('Error fetching recipes:', err);
+    }
+  });
 
-
+  }
 
 }
