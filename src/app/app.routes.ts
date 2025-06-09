@@ -6,17 +6,20 @@ import { Routes } from '@angular/router';
 import { AuthGuard } from './Gurad/auth.guard'
 import { ContactComponent } from './component/contact/contact.component';
 import { LoaderComponent } from './component/loader/loader.component';
+import { ErrorComponent } from './component/error/error.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'home', component: MainComponent, canActivate: [AuthGuard] },
-    { path: 'recipe-search', component: RecipeSearchComponent, canActivate: [AuthGuard] },
-    { path: 'Recipes', loadComponent: () => import('./component/recipe-list/recipe-list.component').then(m => m.RecipeListComponent), canActivate: [AuthGuard] },
+    { path: 'home', component: MainComponent },
+    { path: 'recipe-search', component: RecipeSearchComponent },
+    { path: 'Recipes', loadComponent: () => import('./component/recipe-list/recipe-list.component').then(m => m.RecipeListComponent) },
     { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
     { path: 'loader', component:LoaderComponent },
-    { path: '**', redirectTo: 'login' },
-    
+    { path: 'Recipe/:id', loadComponent: () => import('./component/single-item/single-item.component').then(m => m.SingleItemComponent), canActivate: [AuthGuard] },
+    { path: '404', component:ErrorComponent },
+    { path: '**', redirectTo: '404' },
+
 
 ];

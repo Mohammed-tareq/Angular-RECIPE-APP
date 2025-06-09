@@ -19,20 +19,22 @@ export class LoginComponent {
 
   constructor(private auth: AuthService, private router: Router) {
     if (this.auth.isAuthenticated()) {
-    this.router.navigate(['/home']);
-  }
+      this.router.navigate(['/home']);
+    } else {
+      this.router.navigate(['/404']);
+    }
   }
 
   login() {
     if (!this.email || !this.password) {
-    this.error = 'Please fill in all required fields.';
-    return;
-  }
+      this.error = 'Please fill in all required fields.';
+      return;
+    }
     try {
       this.auth.login({ email: this.email, password: this.password });
       this.router.navigate(['/home']);
     } catch (e: any) {
-      this.error = e.message;
+      this.router.navigate(['/404']);
     }
   }
 }

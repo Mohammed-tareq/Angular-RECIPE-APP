@@ -1,0 +1,106 @@
+@if(isLoader){
+  <app-loader></app-loader>
+} @else if(recipe) {
+  <div class="bg-gradient-to-b from-yellow-50 via-orange-100 to-green-50 min-h-screen overflow-y-auto py-10 sm:py-16">
+    <div class="bg-white text-green-900 rounded-xl shadow-xl p-6 sm:p-10 lg:p-12 max-w-2xl sm:max-w-4xl lg:max-w-6xl mx-auto">
+      <!-- Product Image -->
+      @if(recipe.image) {
+        <img [src]="recipe.image" [alt]="recipe.title || 'Product Image'"
+          class="w-full h-48 sm:h-64 lg:h-96 object-cover rounded-lg mb-6 sm:mb-8 shadow-md" />
+      }
+
+      <!-- Product Title and Brand -->
+      <div class="mb-6">
+        <h1 class="text-2xl sm:text-3xl lg:text-5xl font-bold mb-2 text-orange-900">
+          {{ recipe.title || 'Product Details' }}
+        </h1>
+        @if(recipe.brand) {
+          <p class="text-lg text-green-700">Brand: {{ recipe.brand }}</p>
+        }
+      </div>
+
+      <!-- Price -->
+      @if(recipe.price !== undefined && recipe.price !== null) {
+        <div class="mb-6">
+          <p class="text-2xl font-bold text-green-800">${{ recipe.price.toFixed(2) }}</p>
+        </div>
+      }
+
+      <!-- Description -->
+      @if(recipe.description) {
+        <div class="mb-6">
+          <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 text-orange-800">Description</h2>
+          <p class="text-green-700 text-base sm:text-lg">{{ recipe.description }}</p>
+        </div>
+      }
+
+      <!-- Badges -->
+      @if(recipe.badges?.length) {
+        <div class="mb-6">
+          <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 text-orange-800">Product Features</h2>
+          <div class="flex flex-wrap gap-2">
+            @for(badge of recipe.badges; track badge) {
+              <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
+                {{ formatBadgeText(badge) }}
+              </span>
+            }
+          </div>
+        </div>
+      }
+
+      <!-- Nutrition Facts -->
+      @if(recipe.nutrition?.nutrients?.length) {
+        <div class="mb-6">
+          <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold mb-4 text-orange-800">Nutrition Facts</h2>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-green-900 text-sm sm:text-base">
+              <thead>
+                <tr class="bg-orange-100">
+                  <th class="border-b-2 py-2 px-4">Nutrient</th>
+                  <th class="border-b-2 py-2 px-4">Amount</th>
+                  <th class="border-b-2 py-2 px-4">% Daily Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for(nutrient of recipe.nutrition?.nutrients ?? []; track nutrient) {
+                  @if(nutrient.amount > 0) {
+                    <tr class="border-b border-green-100">
+                      <td class="py-2 px-4">{{ nutrient.name }}</td>
+                      <td class="py-2 px-4">{{ nutrient.amount }} {{ nutrient.unit }}</td>
+                      <td class="py-2 px-4">
+                        @if(nutrient.percentOfDailyNeeds) {
+                          {{ nutrient.percentOfDailyNeeds.toFixed(1) }}%
+                        }
+                      </td>
+                    </tr>
+                  }
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      }
+
+      <!-- Credits -->
+      @if(recipe.credits) {
+        <div class="mt-8 text-sm text-green-600 border-t pt-4">
+          <p>Image credits: {{ recipe.credits.image }}</p>
+          @if(recipe.credits.text) {
+            <p>Data credits: {{ recipe.credits.text }}</p>
+          }
+        </div>
+      }
+    </div>
+  </div>
+} @else {
+  <div class="min-h-screen flex items-center justify-center bg-gradient-to-b from-yellow-50 via-orange-100 to-green-50">
+    <div class="text-center p-8 bg-white rounded-xl shadow-xl">
+      <h2 class="text-2xl font-bold text-red-600 mb-4">Product Not Found</h2>
+      <p class="text-gray-600 mb-4">Sorry, we couldn't find the product you're looking for.</p>
+      <button routerLink="/recipe-search"
+              class="px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors">
+        Go Back Home
+      </button>
+    </div>
+  </div>
+}

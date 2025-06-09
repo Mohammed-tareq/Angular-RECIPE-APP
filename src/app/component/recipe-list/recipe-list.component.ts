@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { SpoonacularService } from '../../servies/spoonacular/spoonacular.service';
 import { LoaderComponent } from '../loader/loader.component';
 import { CommonModule } from '@angular/common';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-list',
-  imports: [CommonModule, LoaderComponent],
+  imports: [CommonModule, LoaderComponent , RouterModule],
   templateUrl: './recipe-list.component.html',
   styleUrl: './recipe-list.component.scss'
 })
@@ -14,7 +15,7 @@ export class RecipeListComponent implements OnInit {
   recipes: any[] = [];
   loading: boolean = true;
 
-  constructor(private spoonSer: SpoonacularService) { }
+  constructor(private spoonSer: SpoonacularService , private router: Router) { }
 
   ngOnInit(): void {
     this.showRecipes();
@@ -31,7 +32,7 @@ export class RecipeListComponent implements OnInit {
         }
       },
       error: (err: any) => {
-        console.error('Error fetching recipes:', err);
+        this.router.navigate(['/404']);
         this.loading = false;
       }
     });

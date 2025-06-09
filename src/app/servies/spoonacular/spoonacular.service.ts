@@ -9,7 +9,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 
 export class SpoonacularService {
-  private apiKey: string = "eZnqJt0rO6R7yoCbo0O1gOktM33yzduj";
+  private apiKey: string = "TRaNH4pcvENCYDWsN4QSBggo4KXdR82i";
   private recipesSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   recipes: Observable<any[]> = this.recipesSubject.asObservable();
 
@@ -29,5 +29,10 @@ export class SpoonacularService {
     const headers = new HttpHeaders().set('apiKey', this.apiKey);
     return this.http.get<any[]>(url, { headers });
 
+  }
+  getRecipeDetails(id: number): Observable<any> {
+    const url = `https://api.apilayer.com/spoonacular/food/products/${id}`;
+    const headers = new HttpHeaders().set('apiKey', this.apiKey);
+    return this.http.get<any>(url, { headers });
   }
 }

@@ -20,20 +20,23 @@ export class RegisterComponent {
 
   constructor(private auth: AuthService, private router: Router) {
     if (this.auth.isAuthenticated()) {
-    this.router.navigate(['/home']);
-  }
+      this.router.navigate(['/home']);
+    } else {
+      this.router.navigate(['/404']);
+    }
+
   }
 
   register() {
     if (!this.name || !this.email || !this.password) {
-    this.error = 'Please fill in all required fields.';
-    return;
+      this.error = 'Please fill in all required fields.';
+      return;
+    }
+    try {
+      this.auth.register({ name: this.name, email: this.email, password: this.password });
+      this.router.navigate(['/home']);
+    } catch (e: any) {
+      this.router.navigate(['/404']);
+    }
   }
-  try {
-    this.auth.register({ name: this.name, email: this.email, password: this.password });
-    this.router.navigate(['/home']);
-  } catch (e: any) {
-    this.error = e.message;
-  }
-}
 }

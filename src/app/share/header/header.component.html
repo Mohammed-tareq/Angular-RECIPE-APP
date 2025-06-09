@@ -14,7 +14,6 @@
     <a class="text-orange-700 hover:text-orange-500 text-lg" [routerLink]="'/recipe-search'">Search Recipes</a>
 
     <ng-container *ngIf="isLoggedIn; else guestLinks">
-      <!-- <span class="text-orange-700 text-lg">Hi, {{ userName }}!</span> -->
       <a class="text-orange-700 hover:text-orange-500 text-lg" (click)="logout()" style="cursor: pointer;">Logout</a>
     </ng-container>
 
