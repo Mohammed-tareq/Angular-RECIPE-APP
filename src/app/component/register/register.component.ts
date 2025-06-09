@@ -21,9 +21,7 @@ export class RegisterComponent {
   constructor(private auth: AuthService, private router: Router) {
     if (this.auth.isAuthenticated()) {
       this.router.navigate(['/home']);
-    } else {
-      this.router.navigate(['/404']);
-    }
+    } 
 
   }
 
@@ -36,7 +34,6 @@ export class RegisterComponent {
       this.auth.register({ name: this.name, email: this.email, password: this.password });
       this.router.navigate(['/home']);
     } catch (e: any) {
-      this.router.navigate(['/404']);
-    }
+      this.error = e.message || 'Registration failed. Please try again.';}
   }
 }

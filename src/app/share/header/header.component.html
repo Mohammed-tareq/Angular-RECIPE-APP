@@ -1,4 +1,4 @@
-<header class="sticky top-0 z-50 backdrop-blur-md bg-yellow-200/80 flex justify-between items-center p-6 shadow-md">
+<header class=" backdrop-blur-md bg-yellow-200/80 flex justify-between items-center p-6 shadow-md">
   <div class="text-2xl font-bold text-orange-900">
     YAMY YAMY
   </div>
@@ -10,7 +10,6 @@
     </ng-container>
 
     <a class="text-orange-700 hover:text-orange-500 text-lg" [routerLink]="'/home'">Home</a>
-    <a class="text-orange-700 hover:text-orange-500 text-lg" [routerLink]="'/contact'">Contact</a>
     <a class="text-orange-700 hover:text-orange-500 text-lg" [routerLink]="'/recipe-search'">Search Recipes</a>
 
     <ng-container *ngIf="isLoggedIn; else guestLinks">
