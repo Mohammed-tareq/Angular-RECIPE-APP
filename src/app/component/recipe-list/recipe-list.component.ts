@@ -11,42 +11,29 @@ import { CommonModule } from '@angular/common';
 })
 export class RecipeListComponent implements OnInit {
 
-<<<<<<< HEAD
   recipes: any[] = [];
-=======
-  recipes:any[] = [];
-  loading = true;    
->>>>>>> 90f37f525fc97a76bc4113f0dd2947c32629e3be
+  loading: boolean = true;
 
   constructor(private spoonSer: SpoonacularService) { }
 
   ngOnInit(): void {
-<<<<<<< HEAD
     this.showRecipes();
 
   }
 
   showRecipes() {
+    this.loading = true;
     this.spoonSer.recipes.subscribe({
       next: (data: any) => {
         this.recipes = data;
+        if (data && data.length > 0) {
+          this.loading = false;
+        }
       },
       error: (err: any) => {
         console.error('Error fetching recipes:', err);
+        this.loading = false;
       }
     });
-
   }
-
-=======
-  this.loading = true;
-
-  this.spoonSer.recipes.subscribe((data) => {
-    if (data && data.length > 0) {
-      this.recipes = data;
-      this.loading = false;
-    }
-  });
-}
->>>>>>> 90f37f525fc97a76bc4113f0dd2947c32629e3be
 }
