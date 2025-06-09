@@ -5,6 +5,7 @@ import { MainComponent } from './pages/home/main/main.component';
 import { Routes } from '@angular/router';
 import { AuthGuard } from './Gurad/auth.guard'
 import { ContactComponent } from './component/contact/contact.component';
+import { LoaderComponent } from './component/loader/loader.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -14,5 +15,8 @@ export const routes: Routes = [
     { path: 'recipe-search', component: RecipeSearchComponent, canActivate: [AuthGuard] },
     { path: 'Recipes', loadComponent: () => import('./component/recipe-list/recipe-list.component').then(m => m.RecipeListComponent), canActivate: [AuthGuard] },
     { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
+    { path: 'loader', component:LoaderComponent },
     { path: '**', redirectTo: 'login' },
+    
+
 ];
