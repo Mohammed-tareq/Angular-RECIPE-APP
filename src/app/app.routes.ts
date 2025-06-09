@@ -4,7 +4,7 @@ import { RegisterComponent } from './component/register/register.component';
 import { MainComponent } from './pages/home/main/main.component';
 import { Routes } from '@angular/router';
 import { AuthGuard } from './Gurad/auth.guard'
-import { ContactComponent } from './component/contact/contact.component';
+import { ContactComponent } from './component/ai-chat/contact.component';
 import { LoaderComponent } from './component/loader/loader.component';
 import { ErrorComponent } from './component/error/error.component';
 
