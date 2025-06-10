@@ -18,7 +18,7 @@ export const routes: Routes = [
     { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
     { path: 'loader', component:LoaderComponent },
     { path: 'Recipe/:id', loadComponent: () => import('./component/single-item/single-item.component').then(m => m.SingleItemComponent), canActivate: [AuthGuard] },
-    { path: '404', component:ErrorComponent },
+    { path: '404', component:ErrorComponent, canActivate: [AuthGuard] },
     { path: '**', redirectTo: '404' },
 
 
