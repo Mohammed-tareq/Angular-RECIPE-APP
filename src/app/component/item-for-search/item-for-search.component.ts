@@ -17,9 +17,9 @@ export class ItemForSearchComponent {
   constructor(private spoonSer: SpoonacularService , private route: Router) { }
 
   ngOnInit(): void {
-  this.spoonSer.getRecipeStatic("pizza").subscribe({
+  this.spoonSer.getRecipeStatic("salad").subscribe({
     next: (data: any) => {
-      this.items = data.results;
+      this.items = data.menuItems;
       // this.itemShow = this.items.slice(0, 3); // Show only the first 10 items
     },
     error: (error: any) => {
