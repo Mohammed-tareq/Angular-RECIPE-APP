@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { SpoonacularService } from '../../servies/spoonacular/spoonacular.service';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
-
+import { Router   } from '@angular/router';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-item-for-search',
-  imports: [CommonModule ],
+  imports: [CommonModule, RouterModule ],
   templateUrl: './item-for-search.component.html',
   styleUrls: ['./item-for-search.component.scss']
 })
